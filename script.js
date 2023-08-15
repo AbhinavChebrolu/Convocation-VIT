@@ -31,6 +31,11 @@ document.addEventListener("DOMContentLoaded", function () {
                             const td = document.createElement("td");
                             td.textContent = values[i];
                             trData.appendChild(td);
+
+                            if (i === 3) { // Check for the 4th column
+                                td.style.backgroundColor = "yellow";
+                                td.style.fontWeight = "bold";
+                            }
                         }
 
                         trData.classList.add("certificate-row"); // Highlight certificate number
