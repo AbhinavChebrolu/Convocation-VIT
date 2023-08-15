@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             if (i === 3) { // Check for the 4th column
                                 td.style.backgroundColor = "yellow";
                                 td.style.fontWeight = "bold";
+                                td.style.color = "blue";
                             }
                         }
 
