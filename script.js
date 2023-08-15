@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 dataRows.forEach(row => {
                     const values = row.split(",");
                     
-                    if (values[2] === regNumber) { // Match the Reg No
+                    if (values[1] === regNumber) { // Match the Reg No
                         const table = document.createElement("table");
                         const trHeader = document.createElement("tr");
                         const trData = document.createElement("tr");
