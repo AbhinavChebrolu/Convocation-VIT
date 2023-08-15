@@ -6,8 +6,10 @@ body {
     position: relative;
     min-height: 100vh;
 }
-.resizedTextbox {width: 100px; height: 20px
-                text-transform: uppercase;}
+.resizedTextbox {width: 100px; height: 20px}
+input[type="text"].resizedTextbox {
+    text-transform: uppercase;
+}
 @font-face{
     font-family:'Neue Montreal';
     src: url('fonts/NeueMontreal-Regular.ttf');
