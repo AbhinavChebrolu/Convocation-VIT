@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         resultDiv.innerHTML = ""; // Clear previous results
 
-        const regNumber = document.getElementById("regNumber").value;
+        const regNumberInput = document.getElementById("regNumber");
+        const regNumber = regNumberInput.value.toUpperCase(); // Convert to uppercase
 
         fetch("data.csv")
             .then(response => response.text())
@@ -15,7 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 const headers = rows[0].split(",");
                 const dataRows = rows.slice(1);
 
-                dataRows.forEach(row => {
+                let regNumberFound = false; // Flag to track if Reg No is found
+
+                dataRows.some(row => { // Using 'some' to stop iteration after the Reg No is found
                     const values = row.split(",");
                     
                     if (values[1] === regNumber) { // Match the Reg No
@@ -33,6 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             trData.appendChild(td);
 
                             if (i === 3) { // Check for the 4th column
+                                if (dataRows.indexOf(row) < 894) {
+                                    th.textContent = "Seat Number"; // Change header attribute
+                                }
                                 td.style.backgroundColor = "yellow";
                                 td.style.fontWeight = "bold";
                                 td.style.color = "blue";
@@ -46,10 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         resultDiv.innerHTML = "";
                         resultDiv.appendChild(table);
                         resultDiv.classList.add("show");
+                        regNumberFound = true;
+                        return true; // Stop iteration
                     }
                 });
 
-                if (!resultDiv.classList.contains("show")) {
+                if (!regNumberFound) {
                     resultDiv.innerHTML = "<p>Student not found.</p>";
                     resultDiv.classList.add("show");
                 }
